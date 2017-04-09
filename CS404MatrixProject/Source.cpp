@@ -14,7 +14,7 @@ Current File: Source.cpp -> Source file for Heuristic program
 
 using namespace std;
 
-int OMCmatrix(int d_arr[], int n, int cost_arr[]);
+long int OMCmatrix(int d_arr[], int n, long int cost_arr[]);
 
 
 
@@ -22,7 +22,7 @@ int main()
 {
 	
 	int  arr[] = {5, 10, 3, 12, 5, 50, 6};
-	int table[900];
+	long int table[900];
 	int i = 1, j = 0;
 	
 	vector<int> vec_arr;
@@ -36,7 +36,7 @@ int main()
 	//so, im trying this out....
 	i = 1;
 	j = 30;
-	int opt_val, HA_val, HB_val, HC_val;
+	long int opt_val, HA_val, HB_val, HC_val, HD_val;
 	//minval = optimalchain(arr, 10);
 	int size = sizeof(arr)/ sizeof(arr[0]);
 	
@@ -48,12 +48,13 @@ int main()
 	HA_val = Heuristic_A(vec_arr);
 	HB_val = Heuristic_B(vec_arr);
 	HC_val = Heuristic_C(vec_arr);
+	HD_val = Heuristic_D(vec_arr);
 
 	cout << "Optimal Cost: " << opt_val << endl;
-	cout << "Heauristic A: " << HA_val << endl;
+	cout << "Heuristic A: " << HA_val << endl;
 	cout << "Heuristic B: " << HB_val << endl;
 	cout << "Heuristic C: " << HC_val << endl;
-
+	cout << "Heuristic D: " << HD_val << endl;
 
 
 	system("pause");
@@ -65,7 +66,7 @@ int main()
 pre: pass in an array
 post: returns the optimal minimal cost for multiplying the matrix chain
 */
-int OMCmatrix(int d_arr[], int n, int cost_arr[]) {
+long int OMCmatrix(int d_arr[], int n, long int cost_arr[]) {
 	
 	int i, j, k, L, q;
 

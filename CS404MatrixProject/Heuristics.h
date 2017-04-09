@@ -18,7 +18,7 @@ using namespace std;
 Pre: takes a vector of the dimensions {d0, d1,..., dn}
 Post: returns the cost of following heuristic A.
 */
-int Heuristic_A(vector<int> arr);
+long int Heuristic_A(vector<int> arr);
 
 /* Heuristic B:
 -> Do most expensive matrix operation first, and repeat until only final matrix remains.
@@ -27,7 +27,7 @@ int Heuristic_A(vector<int> arr);
 Pre: takes a vector of the dimensions {d0, d1,..., dn}.
 Post: returns the cost of following heuristic B.
 */
-int Heuristic_B(vector<int> arr);
+long int Heuristic_B(vector<int> arr);
 
 /*
 Heuristic C:
@@ -37,4 +37,15 @@ Heuristic C:
 Pre: takes a vector of the dimensions {d0,..., dn}.
 Post: returns the cost of following heuristic C.
 */
-int Heuristic_C(vector<int> arr);
+long int Heuristic_C(vector<int> arr);
+
+/*
+Heuristic D:
+-> Do least expensive matrix multiplication first, find i such that the product of
+-> (d(i-1) * di * d(i+1)) is the smallest from i = 1... (n-1).
+-> If there exists two di's such that their respective products are equivalent,
+then the first occurance in the array is used.
+Pre: takes a vector of the dimensions of the matrices {d0, d1,..., dn}
+Post: returns an integer value for the cost of this heuristic D's multiplication tree
+*/
+long int Heuristic_D(vector<int> arr);
