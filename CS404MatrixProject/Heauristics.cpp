@@ -145,3 +145,30 @@ long int Heuristic_D(vector<int> arr) {
 	// Return cost
 	return accrued_cost;
 }
+
+
+/*
+Heuristic F:
+-> Ignorant approach: B1 X B2, then multiply the result with B3, and so on.
+Pre: takes a vector of the dimensions of matrices {d0,..., dn}
+Post: returns the long integer cost of following heuristic F.
+*/
+long int Heuristic_F(vector<int> arr) {
+	int idx_d;
+	long int accrued_cost = 0, current_cost = 0;
+	while (arr.size() > 2) {	// loop until only 2 dimensions, one matrix, remain.
+		idx_d = 1;
+		current_cost = arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1];
+		// Calculate cost of multiplying the least expensive interior multiplication.
+		if ((accrued_cost + current_cost) < numeric_limits<long int>::max())
+			accrued_cost += current_cost;
+		else
+			cout << "INTEGER OVERFLOW: Heuristic D." << endl;
+
+		// Remove the computed dimension.
+		arr.erase(arr.begin() + idx_d);
+
+	}
+	// Return cost
+	return accrued_cost;
+}

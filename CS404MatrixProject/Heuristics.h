@@ -50,3 +50,11 @@ Pre: takes a vector of the dimensions of the matrices {d0, d1,..., dn}
 Post: returns an integer value for the cost of this heuristic D's multiplication tree
 */
 long int Heuristic_D(vector<int> arr);
+
+/*
+Heuristic F:
+-> Ignorant approach: B1 X B2, then multiply the result with B3, and so on.
+Pre: takes a vector of the dimensions of matrices {d0,..., dn}
+Post: returns the long integer cost of following heuristic F.
+*/
+long int Heuristic_F(vector<int> arr);

@@ -36,7 +36,7 @@ int main()
 	//so, im trying this out....
 	i = 1;
 	j = 30;
-	long int opt_val, HA_val, HB_val, HC_val, HD_val;
+	long int opt_val, HA_val, HB_val, HC_val, HD_val, HF_val;
 	//minval = optimalchain(arr, 10);
 	int size = sizeof(arr)/ sizeof(arr[0]);
 	
@@ -49,13 +49,14 @@ int main()
 	HB_val = Heuristic_B(vec_arr);
 	HC_val = Heuristic_C(vec_arr);
 	HD_val = Heuristic_D(vec_arr);
+	HF_val = Heuristic_F(vec_arr);
 
 	cout << "Optimal Cost: " << opt_val << endl;
 	cout << "Heuristic A: " << HA_val << endl;
 	cout << "Heuristic B: " << HB_val << endl;
 	cout << "Heuristic C: " << HC_val << endl;
 	cout << "Heuristic D: " << HD_val << endl;
-
+	cout << "Heuristic F: " << HF_val << endl;
 
 	system("pause");
 }
