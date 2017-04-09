@@ -31,8 +31,11 @@ long int Heuristic_A(vector<int> arr) {
 			}
 		}
 		// Calculate cost to multiply out the largest interior dimension.
-		accrued_cost += arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1];
-
+		if ((accrued_cost + (arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1])) < numeric_limits<long int>::max())
+			accrued_cost += arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1];
+		else {
+			cout << "INTEGER OVERFLOW: Heuristic A." << endl;
+		}
 		// Remove the largest dimenson.
 		arr.erase(arr.begin() + idx_d);
 	}
@@ -61,7 +64,10 @@ long int Heuristic_B(vector<int> arr) {
 			}
 		}
 		// Calculate cost to multiply out the most expensive matrix computation.
-		accrued_cost += max_d;
+		if ((accrued_cost + max_d) < numeric_limits<long int>::max())
+			accrued_cost += max_d;
+		else
+			cout << "INTEGER OVERFLOW: Heuristic B." << endl;
 
 		// Remove the computed dimension.
 		arr.erase(arr.begin() + idx_d);
@@ -93,7 +99,10 @@ long int Heuristic_C(vector<int> arr) {
 			}
 		}
 		// Calculate cost of multiplying the smallest dimension out.
-		accrued_cost += arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1];
+		if ((accrued_cost + arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1]) < numeric_limits<long int>::max())
+			accrued_cost += arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1];
+		else
+			cout << "INTEGER OVERFLOW: Heuristic C." << endl;
 
 		// Remove the computed dimension.
 		arr.erase(arr.begin() + idx_d);
@@ -126,8 +135,10 @@ long int Heuristic_D(vector<int> arr) {
 			}
 		}
 		// Calculate cost of multiplying the least expensive interior multiplication.
-		accrued_cost += min_d;
-
+		if ((accrued_cost + min_d) < numeric_limits<long int>::max())
+			accrued_cost += min_d;
+		else
+			cout << "INTEGER OVERFLOW: Heuristic D." << endl;
 		// Remove the computed dimension.
 		arr.erase(arr.begin() + idx_d);
 	}

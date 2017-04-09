@@ -9,6 +9,7 @@ Current File: Heuristics.h -> The header file for the functions that carry out t
 
 #pragma once
 #include <vector>
+#include <iostream>
 using namespace std;
 
 /* Heuristic A:
