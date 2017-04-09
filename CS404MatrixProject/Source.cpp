@@ -1,3 +1,12 @@
+/*
+Name: Nathaniel B.
+Student ID: 16208536
+Email: nabgz8@mail.umkc.edu
+Course: CS 404 with Prof. Appie
+Assignment: Matrix Chain Heauristic Project
+Current File: Source.cpp -> Source file for Heuristic program
+*/
+
 #include <iostream>
 #include <cstdlib>
 #include <random>
@@ -27,20 +36,25 @@ int main()
 	//so, im trying this out....
 	i = 1;
 	j = 30;
-	int opt_val, HA_val, HB_val;
+	int opt_val, HA_val, HB_val, HC_val;
 	//minval = optimalchain(arr, 10);
 	int size = sizeof(arr)/ sizeof(arr[0]);
 	
 	for (int l = 0; l < size; l++)
 		vec_arr.push_back(arr[l]);
 
+	// Test different heuristic algorithms
 	opt_val = OMCmatrix(arr, size, table);
 	HA_val = Heuristic_A(vec_arr);
 	HB_val = Heuristic_B(vec_arr);
+	HC_val = Heuristic_C(vec_arr);
 
 	cout << "Optimal Cost: " << opt_val << endl;
 	cout << "Heauristic A: " << HA_val << endl;
 	cout << "Heuristic B: " << HB_val << endl;
+	cout << "Heuristic C: " << HC_val << endl;
+
+
 
 	system("pause");
 }
