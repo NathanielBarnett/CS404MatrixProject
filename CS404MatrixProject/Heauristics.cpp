@@ -10,6 +10,45 @@ Current File: Heauristics.cpp -> The implementation of the various heuristics.
 #include "Heuristics.h"
 
 
+// REFERENCE URL's: http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/chainMatrixMult.htm	For comprehension of the algorithm
+// -> http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/						For implementation reference of algorithm
+/*
+pre: pass in an array, the size n of the array, and an array to store the computed cost of different parenthizations.
+post: returns the optimal minimal cost for multiplying the matrix chain.
+*/
+long int OMCmatrix(int d_arr[], int n, long int cost_arr[]) {
+
+	int i, j, k, L, q;
+
+	/* m[i,j] = Minimum number of scalar multiplications needed
+	to compute the matrix A[i]A[i+1]...A[j] = A[i..j] where
+	dimension of A[i] is p[i-1] x p[i] */
+
+	// cost is zero when multiplying one matrix.
+	for (i = 1; i<n; i++)
+		cost_arr[i * i] = 0;
+
+	// L is chain length.
+	for (L = 2; L<n; L++)
+	{
+		for (i = 1; i<n - L + 1; i++)
+		{
+			j = i + L - 1;
+			cost_arr[i * j] = INT_MAX;
+			for (k = i; k <= j - 1; k++)
+			{
+				// q = cost/scalar multiplications
+				q = cost_arr[i * k] + cost_arr[(k + 1) * j] + d_arr[i - 1] * d_arr[k] * d_arr[j];
+				if (q < cost_arr[i * j])
+					cost_arr[i * j] = q;
+			}
+		}
+	}
+
+	return cost_arr[1 * (n - 1)];
+}
+
+
 /* Heuristic A: 
 -> Remove largest dimension first to find the largest value of the "inner" dimensions, {d0, d1,..., d(n-1)},
 -> and multiply the two matrices with this shared largest dimension.Repeat until all matrices are processed.
@@ -53,19 +92,19 @@ Post: returns the cost of following heuristic B.
 long int Heuristic_B(vector<int> arr) {
 
 	int idx_d;
-	long int accrued_cost = 0, max_d;
+	long int accrued_cost = 0, max_cost;
 	while (arr.size() > 2) {	// loop until only 2 dimensions, one matrix, remain.
-		max_d = -1;
+		max_cost = -1;
 		idx_d = 1;
 		for (int j = 1; j < arr.size() - 1; j++) {	// to check for most expensive matrix multiplication of remaining dimensions.
-			if ((arr[j - 1] * arr[j] * arr[j + 1]) > max_d) {
-				max_d = (arr[j - 1] * arr[j] * arr[j + 1]);
+			if ((arr[j - 1] * arr[j] * arr[j + 1]) > max_cost) {
+				max_cost = (arr[j - 1] * arr[j] * arr[j + 1]);
 				idx_d = j;
 			}
 		}
 		// Calculate cost to multiply out the most expensive matrix computation.
-		if ((accrued_cost + max_d) < numeric_limits<long int>::max())
-			accrued_cost += max_d;
+		if ((accrued_cost + max_cost) < numeric_limits<long int>::max())
+			accrued_cost += max_cost;
 		else
 			cout << "INTEGER OVERFLOW: Heuristic B." << endl;
 
@@ -124,19 +163,19 @@ Heuristic D:
 long int Heuristic_D(vector<int> arr) {
 
 	int idx_d;
-	long int accrued_cost = 0, min_d;
+	long int accrued_cost = 0, min_cost;
 	while (arr.size() > 2) {	// loop until only 2 dimensions, one matrix, remain.
-		min_d = INT_MAX;
+		min_cost = INT_MAX;
 		idx_d = 1;
 		for (int j = 1; j < arr.size() - 1; j++) {	// to check for the least expensive interior multiplication.
-			if ((arr[j - 1] * arr[j] * arr[j + 1]) < min_d) {
-				min_d = (arr[j - 1] * arr[j] * arr[j + 1]);
+			if ((arr[j - 1] * arr[j] * arr[j + 1]) < min_cost) {
+				min_cost = (arr[j - 1] * arr[j] * arr[j + 1]);
 				idx_d = j;
 			}
 		}
 		// Calculate cost of multiplying the least expensive interior multiplication.
-		if ((accrued_cost + min_d) < numeric_limits<long int>::max())
-			accrued_cost += min_d;
+		if ((accrued_cost + min_cost) < numeric_limits<long int>::max())
+			accrued_cost += min_cost;
 		else
 			cout << "INTEGER OVERFLOW: Heuristic D." << endl;
 		// Remove the computed dimension.
@@ -144,6 +183,55 @@ long int Heuristic_D(vector<int> arr) {
 	}
 	// Return cost
 	return accrued_cost;
+}
+
+
+/*
+Heuristic E:
+-> Random execution tree: find a random i, and carry out the multiplication of
+-> d(i - 1) * di * d(i + 1). repeat until all matrices are processed.
+Pre: takes a vector of dimensions {d0,..., dn}
+Post: returns a long int value for the cost of carrying out a random execution tree.
+*/
+long int Heuristic_E(vector<int> arr) {
+	int idx_d;
+	long int accrued_cost = 0;
+	
+	
+	while (arr.size() > 2) {
+		srand(time(NULL));	// Set seed for random number generator.
+
+		// get random number, mod by (n - 1), then increment by 1 to result with possible values between {1,..., (n - 1)}
+		idx_d = (rand() % (arr.size() - 2) + 1);
+		
+		if (accrued_cost + (arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1]) < LONG_MAX)
+			accrued_cost += arr[idx_d - 1] * arr[idx_d] * arr[idx_d + 1];
+		else
+			cout << "INTEGER OVERFLOW: Heuristic E." << endl;
+
+		// Remove the computed dimension
+		arr.erase(arr.begin() + idx_d);
+	}
+	// Return cost
+	return accrued_cost;
+}
+
+/*
+Heuristic E: taking the min of 2n number of random trees generated.
+Pre: takes a vector of dimensions {d0,..., dn}
+Post: returns the min computational cost of 2n number of random execution trees.
+*/
+long int Heuristic_E_L(vector<int> arr) {
+	long int min = LONG_MAX, current_val = LONG_MAX;
+	for (int i = 0; i < 2 * (arr.size()); i++)
+	{
+		current_val = Heuristic_E(arr);
+		
+		// check if lower than currant min.
+		if (current_val < min)
+			min = current_val;
+	}
+	return min;
 }
 
 

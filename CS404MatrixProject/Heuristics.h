@@ -9,8 +9,19 @@ Current File: Heuristics.h -> The header file for the functions that carry out t
 
 #pragma once
 #include <vector>
+#include <random>
+#include <time.h>
 #include <iostream>
 using namespace std;
+
+// REFERENCE URL's: http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/chainMatrixMult.htm	For comprehension of the algorithm
+// -> http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/						For implementation reference of algorithm
+/*
+pre: pass in an array
+post: returns the optimal minimal cost for multiplying the matrix chain
+*/
+long int OMCmatrix(int d_arr[], int n, long int cost_arr[]);
+
 
 /* Heuristic A:
 -> Remove largest dimension first to find the largest value of the "inner" dimensions, {d0, d1,..., d(n-1)},
@@ -50,6 +61,22 @@ Pre: takes a vector of the dimensions of the matrices {d0, d1,..., dn}
 Post: returns an integer value for the cost of this heuristic D's multiplication tree
 */
 long int Heuristic_D(vector<int> arr);
+
+/*
+Heuristic E:
+-> Random execution tree: find a random i, and carry out the multiplication of 
+-> d(i - 1) * di * d(i + 1). repeat until all matrices are processed.
+Pre: takes a vector of dimensions {d0,..., dn}
+Post: returns a long int value for the cost of carrying out a random execution tree.
+*/
+long int Heuristic_E(vector<int> arr);
+
+/*
+Heuristic E: taking the min of 2n number of random trees generated.
+Pre: takes a vector of dimensions {d0,..., dn}
+Post: returns the min computational cost of 2n number of random execution trees.
+*/
+long int Heuristic_E_L(vector<int> arr);
 
 /*
 Heuristic F:
