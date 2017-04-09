@@ -12,11 +12,11 @@ Current File: Heauristics.cpp -> The implementation of the various heuristics.
 // Wrapper function for OMCmatrix()
 long int Optimal_Cost(int arr[], int N) {
 	long int Table[900];
-	for (int i = 0; i < 900, i++)
+	for (int i = 0; i < 900; i++)
 	{
 		Table[i] = -1;
 	}
-	OMCmatrix(arr, N, Table);
+	return OMCmatrix(arr, N, Table);
 }
 
 
@@ -273,8 +273,8 @@ long int Heuristic_F(vector<int> arr) {
 }
 
 
-void Compute_Heuristics(H_stats HA, H_stats HB, H_stats HC,
-	H_stats HD, H_stats HE, H_stats HF) {
+void Compute_Heuristics(H_stats& HA, H_stats& HB, H_stats& HC,
+	H_stats& HD, H_stats& HE, H_stats& HF) {
 	for (int i = 0; i < 30; i++) {
 		// A
 		if (HA.arr_of_costs[i] < HA.min)
@@ -314,11 +314,40 @@ void Compute_Heuristics(H_stats HA, H_stats HB, H_stats HC,
 		HF.ave += HF.arr_of_costs[i];
 	}
 	// now divide by 30 to get the actual average value for each heuristic.
-	HA.ave = HA.ave * (1 / 30);
-	HB.ave = HB.ave * (1 / 30);
-	HC.ave - HC.ave * (1 / 30);
-	HD.ave = HD.ave * (1 / 30);
-	HE.ave = HE.ave * (1 / 30);
-	HF.ave = HF.ave * (1 / 30);
+	HA.ave = HA.ave / 30.0;
+	HB.ave = HB.ave / 30.0;
+	HC.ave = HC.ave / 30.0;
+	HD.ave = HD.ave / 30.0;
+	HE.ave = HE.ave / 30.0;
+	HF.ave = HF.ave / 30.0;
 
+}
+
+
+// Print the stats for the heuristics
+void Print_Heuristics(int N, H_stats& HA, H_stats& HB, H_stats& HC,
+	H_stats& HD, H_stats& HE, H_stats& HF) {
+	// A
+	cout << "For N = " << N << ":" << endl << "Heuristic A:" << "MIN = " << HA.min;
+	cout << " MAX = " << HA.max << " AVE = " << HA.ave << endl;
+	
+	// B
+	cout << "For N = " << N << ":" << endl << "Heuristic B:" << "MIN = " << HB.min;
+	cout << " MAX = " << HB.max << " AVE = " << HB.ave << endl;
+
+	// C
+	cout << "For N = " << N << ":" << endl << "Heuristic C:" << "MIN = " << HC.min;
+	cout << " MAX = " << HC.max << " AVE = " << HC.ave << endl;
+
+	// D
+	cout << "For N = " << N << ":" << endl << "Heuristic D:" << "MIN = " << HD.min;
+	cout << " MAX = " << HD.max << " AVE = " << HD.ave << endl;
+
+	// E
+	cout << "For N = " << N << ":" << endl << "Heuristic E:" << "MIN = " << HE.min;
+	cout << " MAX = " << HE.max << " AVE = " << HE.ave << endl;
+
+	// F
+	cout << "For N = " << N << ":" << endl << "Heuristic F:" << "MIN = " << HF.min;
+	cout << " MAX = " << HF.max << " AVE = " << HF.ave << endl;
 }

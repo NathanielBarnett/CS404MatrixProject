@@ -14,10 +14,12 @@ Current File: Source.cpp -> Source file for Heuristic program
 
 using namespace std;
 
+void Heuristic_Experiment();
+
 int main()
 {
 	//Matrix Chain Heuristic Experiment
-	
+	Heuristic_Experiment();
 }
 
 
@@ -34,23 +36,27 @@ void Heuristic_Experiment() {
 	{
 		for (int r = 0; r < 30; r++)
 		{
+			srand(time(NULL));
 			for (int i = 0; i < N; i++)
 			{
-				srand(time(NULL));
+				
 				dim = (rand() % 10) + 7;
 				arr[i] = dim;
 				vec_arr.push_back(dim);
 			}
 			Op_cost = Optimal_Cost(arr, N);
-			Heur_A.arr_of_costs[r] = Heuristic_A(vec_arr);
-			Heur_B.arr_of_costs[r] = Heuristic_B(vec_arr);
-			Heur_C.arr_of_costs[r] = Heuristic_C(vec_arr);
-			Heur_D.arr_of_costs[r] = Heuristic_D(vec_arr);
-			Heur_E_L.arr_of_costs[r] = Heuristic_E_L(vec_arr);
-			Heur_F.arr_of_costs[r] = Heuristic_F(vec_arr);
+			Heur_A.arr_of_costs[r] = double(Heuristic_A(vec_arr)) / double(Op_cost);
+			Heur_B.arr_of_costs[r] = double(Heuristic_B(vec_arr)) / double(Op_cost);
+			Heur_C.arr_of_costs[r] = double(Heuristic_C(vec_arr)) / double(Op_cost);
+			Heur_D.arr_of_costs[r] = double(Heuristic_D(vec_arr)) / double(Op_cost);
+			Heur_E_L.arr_of_costs[r] = double(Heuristic_E_L(vec_arr)) / double(Op_cost);
+			Heur_F.arr_of_costs[r] = double(Heuristic_F(vec_arr)) / double(Op_cost);
 		}
-		Co
+		Compute_Heuristics(Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
+		Print_Heuristics(N, Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
 	}
+	cout << endl << "~END EXPERIMENT~" << endl;
+	system("pause");
 }
 
 
