@@ -9,6 +9,17 @@ Current File: Heauristics.cpp -> The implementation of the various heuristics.
 
 #include "Heuristics.h"
 
+// Wrapper function for OMCmatrix()
+long int Optimal_Cost(int arr[], int N) {
+	long int Table[900];
+	for (int i = 0; i < 900, i++)
+	{
+		Table[i] = -1;
+	}
+	OMCmatrix(arr, N, Table);
+}
+
+
 
 // REFERENCE URL's: http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/chainMatrixMult.htm	For comprehension of the algorithm
 // -> http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/						For implementation reference of algorithm
@@ -259,4 +270,55 @@ long int Heuristic_F(vector<int> arr) {
 	}
 	// Return cost
 	return accrued_cost;
+}
+
+
+void Compute_Heuristics(H_stats HA, H_stats HB, H_stats HC,
+	H_stats HD, H_stats HE, H_stats HF) {
+	for (int i = 0; i < 30; i++) {
+		// A
+		if (HA.arr_of_costs[i] < HA.min)
+			HA.min = HA.arr_of_costs[i];
+		if (HA.arr_of_costs[i] > HA.max)
+			HA.max = HA.arr_of_costs[i];
+		HA.ave += HA.arr_of_costs[i];
+		// B
+		if (HB.arr_of_costs[i] < HB.min)
+			HB.min = HB.arr_of_costs[i];
+		if (HB.arr_of_costs[i] > HB.max)
+			HB.max = HB.arr_of_costs[i];
+		HB.ave += HB.arr_of_costs[i];
+		// C
+		if (HC.arr_of_costs[i] < HC.min)
+			HC.min = HC.arr_of_costs[i];
+		if (HC.arr_of_costs[i] > HC.max)
+			HC.max = HC.arr_of_costs[i];
+		HC.ave += HC.arr_of_costs[i];
+		// D
+		if (HD.arr_of_costs[i] < HD.min)
+			HD.min = HD.arr_of_costs[i];
+		if (HD.arr_of_costs[i] > HD.max)
+			HD.max = HD.arr_of_costs[i];
+		HD.ave += HD.arr_of_costs[i];
+		// E
+		if (HE.arr_of_costs[i] < HE.min)
+			HE.min = HE.arr_of_costs[i];
+		if (HE.arr_of_costs[i] > HE.max)
+			HE.max = HE.arr_of_costs[i];
+		HE.ave += HE.arr_of_costs[i];
+		// F
+		if (HF.arr_of_costs[i] < HF.min)
+			HF.min = HF.arr_of_costs[i];
+		if (HF.arr_of_costs[i] > HF.max)
+			HF.max = HF.arr_of_costs[i];
+		HF.ave += HF.arr_of_costs[i];
+	}
+	// now divide by 30 to get the actual average value for each heuristic.
+	HA.ave = HA.ave * (1 / 30);
+	HB.ave = HB.ave * (1 / 30);
+	HC.ave - HC.ave * (1 / 30);
+	HD.ave = HD.ave * (1 / 30);
+	HE.ave = HE.ave * (1 / 30);
+	HF.ave = HF.ave * (1 / 30);
+
 }

@@ -22,6 +22,8 @@ post: returns the optimal minimal cost for multiplying the matrix chain
 */
 long int OMCmatrix(int d_arr[], int n, long int cost_arr[]);
 
+// Wrapper function for OMCmatrix()
+long int Optimal_Cost(int arr[], int N)
 
 /* Heuristic A:
 -> Remove largest dimension first to find the largest value of the "inner" dimensions, {d0, d1,..., d(n-1)},
@@ -85,3 +87,14 @@ Pre: takes a vector of the dimensions of matrices {d0,..., dn}
 Post: returns the long integer cost of following heuristic F.
 */
 long int Heuristic_F(vector<int> arr);
+
+struct H_stats {
+	long int arr_of_costs[30];
+	long int min = INT_MAX;
+	long int max = -1;
+	long int ave = 0;
+};
+
+// function to compute the average, min, and max for all heuristics
+void Compute_Heuristics(H_stats HA, H_stats HB, H_stats HC,
+	H_stats HD, H_stats HE, H_stats HF);
