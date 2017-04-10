@@ -11,6 +11,8 @@ Current File: Heuristics.h -> The header file for the functions that carry out t
 #include <vector>
 #include <random>
 #include <time.h>
+#include <iomanip>
+#include <fstream>
 #include <iostream>
 using namespace std;
 

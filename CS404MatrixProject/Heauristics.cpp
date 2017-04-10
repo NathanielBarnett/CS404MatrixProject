@@ -327,27 +327,35 @@ void Compute_Heuristics(H_stats& HA, H_stats& HB, H_stats& HC,
 // Print the stats for the heuristics
 void Print_Heuristics(int N, H_stats& HA, H_stats& HB, H_stats& HC,
 	H_stats& HD, H_stats& HE, H_stats& HF) {
+
+	ofstream out;
+	out.open("matrix_output.txt", ios::app);
+	if (!out.good())
+	{
+		cout << "~OUTPUT FILE COULD NOT BE OPENED~" << endl;
+	}
+
 	// A
-	cout << "For N = " << N << ":" << endl << "Heuristic A:" << "MIN = " << HA.min;
-	cout << " MAX = " << HA.max << " AVE = " << HA.ave << endl;
+	out << "For N = " << N << ":" << endl << "Heuristic A:" << "MIN = " << HA.min;
+	out << " MAX = " << HA.max << " AVE = " << HA.ave << endl;
 	
 	// B
-	cout << "For N = " << N << ":" << endl << "Heuristic B:" << "MIN = " << HB.min;
-	cout << " MAX = " << HB.max << " AVE = " << HB.ave << endl;
+	out << "For N = " << N << ":" << endl << "Heuristic B:" << "MIN = " << HB.min;
+	out << " MAX = " << HB.max << " AVE = " << HB.ave << endl;
 
 	// C
-	cout << "For N = " << N << ":" << endl << "Heuristic C:" << "MIN = " << HC.min;
-	cout << " MAX = " << HC.max << " AVE = " << HC.ave << endl;
+	out << "For N = " << N << ":" << endl << "Heuristic C:" << "MIN = " << HC.min;
+	out << " MAX = " << HC.max << " AVE = " << HC.ave << endl;
 
 	// D
-	cout << "For N = " << N << ":" << endl << "Heuristic D:" << "MIN = " << HD.min;
-	cout << " MAX = " << HD.max << " AVE = " << HD.ave << endl;
+	out << "For N = " << N << ":" << endl << "Heuristic D:" << "MIN = " << HD.min;
+	out << " MAX = " << HD.max << " AVE = " << HD.ave << endl;
 
 	// E
-	cout << "For N = " << N << ":" << endl << "Heuristic E:" << "MIN = " << HE.min;
-	cout << " MAX = " << HE.max << " AVE = " << HE.ave << endl;
+	out << "For N = " << N << ":" << endl << "Heuristic E:" << "MIN = " << HE.min;
+	out << " MAX = " << HE.max << " AVE = " << HE.ave << endl;
 
 	// F
-	cout << "For N = " << N << ":" << endl << "Heuristic F:" << "MIN = " << HF.min;
-	cout << " MAX = " << HF.max << " AVE = " << HF.ave << endl;
+	out << "For N = " << N << ":" << endl << "Heuristic F:" << "MIN = " << HF.min;
+	out << " MAX = " << HF.max << " AVE = " << HF.ave << endl << endl;
 }

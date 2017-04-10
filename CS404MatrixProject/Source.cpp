@@ -37,6 +37,7 @@ void Heuristic_Experiment() {
 		for (int r = 0; r < 30; r++)
 		{
 			srand(time(NULL));
+			vec_arr.clear();
 			for (int i = 0; i < N; i++)
 			{
 				
@@ -54,6 +55,7 @@ void Heuristic_Experiment() {
 		}
 		Compute_Heuristics(Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
 		Print_Heuristics(N, Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
+		cout << "Completed run for N = " << N << endl;
 	}
 	cout << endl << "~END EXPERIMENT~" << endl;
 	system("pause");
