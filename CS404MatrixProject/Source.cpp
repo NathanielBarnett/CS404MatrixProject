@@ -18,7 +18,7 @@ void Heuristic_Experiment();
 
 int main()
 {
-	
+	/*
 	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput1.txt");
 	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput2.txt");
 	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput3.txt");
@@ -28,10 +28,11 @@ int main()
 	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput7.txt");
 	Heuristic_Experiment("input.txt");
 	Heuristic_Experiment("input2.txt");
+	Heuristic_Experiment("input3.txt");
 	system("pause");
-
+	*/
 	//Matrix Chain Heuristic Experiment
-	//Heuristic_Experiment();
+	Heuristic_Experiment();
 }
 
 
@@ -79,9 +80,18 @@ void Heuristic_Experiment(string file) {
 	ifstream fin(file);
 	if (fin.fail())
 	{
-		cout << "file failed to open." << endl;
+		cout << "Input file failed to open." << endl;
+		system("pause");
 	}
-	cout << "File: " << file << endl;
+	
+
+	ofstream fout("NON_RANDOM_output.txt", ios::app);
+	if (fout.fail())
+	{
+		cout << "Output file failed to open." << endl;
+	}
+
+	fout << "File Read In: " << file << endl;
 
 	int current_val; char comma;
 	int arr[30], counter = 0;
@@ -103,8 +113,8 @@ void Heuristic_Experiment(string file) {
 
 	fin.close();
 
-	cout << "HA: " << HA << endl << "HB: " << HB << endl << "HC: "
+	fout << "HA: " << HA << endl << "HB: " << HB << endl << "HC: "
 		<< HC << endl << "HD: " << HD << endl << "HE: " << HE << endl <<
-		"HF: " << HF << endl << "Optimal: " << Op_cost << endl << endl;
+		"HF: " << HF << endl << "Optimal Cost: " << Op_cost << endl << endl;
 
 }

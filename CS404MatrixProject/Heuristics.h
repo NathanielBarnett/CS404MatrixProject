@@ -22,7 +22,7 @@ using namespace std;
 pre: pass in an array
 post: returns the optimal minimal cost for multiplying the matrix chain
 */
-int OMCmatrix(vector<int> vec_arr);
+long int OMCmatrix(vector<int> vec_arr);
 
 
 /* Heuristic A:

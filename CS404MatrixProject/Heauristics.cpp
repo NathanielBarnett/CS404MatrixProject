@@ -17,11 +17,11 @@ Current File: Heauristics.cpp -> The implementation of the various heuristics.
 pre: pass in an array, the size n of the array, and an array to store the computed cost of different parenthizations.
 post: returns the optimal minimal cost for multiplying the matrix chain.
 */
-int OMCmatrix(vector<int> vec_arr) {
+long int OMCmatrix(vector<int> vec_arr) {
 
 	int i, j, k, L, q;
 	int n = vec_arr.size();
-	int cost_arr[30][30] = { 0 };
+	long int cost_arr[30][30] = { 0 };
 	/* m[i,j] = Minimum number of scalar multiplications needed
 	to compute the matrix A[i]A[i+1]...A[j] = A[i..j] where
 	dimension of A[i] is p[i-1] x p[i] */

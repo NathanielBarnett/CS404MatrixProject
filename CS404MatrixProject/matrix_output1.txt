@@ -1,0 +1,128 @@
+For N = 10:
+
+Heuristic A:
+MIN = 1.00357
+MAX = 1.35675
+AVE = 1.13681
+
+Heuristic B:
+MIN = 1.23377
+MAX = 2.29963
+AVE = 1.71137
+
+Heuristic C:
+MIN = 1.46026
+MAX = 2.54608
+AVE = 1.9334
+
+Heuristic D:
+MIN = 1
+MAX = 1.62883
+AVE = 1.23011
+
+Heuristic E:
+MIN = 1
+MAX = 1.40218
+AVE = 1.14604
+
+Heuristic F:
+MIN = 1
+MAX = 2.07281
+AVE = 1.49734
+
+For N = 15:
+
+Heuristic A:
+MIN = 1.00041
+MAX = 1.30891
+AVE = 1.13763
+
+Heuristic B:
+MIN = 1.47418
+MAX = 2.28719
+AVE = 1.74193
+
+Heuristic C:
+MIN = 1.64039
+MAX = 2.55971
+AVE = 2.06889
+
+Heuristic D:
+MIN = 1.05141
+MAX = 1.54043
+AVE = 1.26846
+
+Heuristic E:
+MIN = 1.05579
+MAX = 1.43923
+AVE = 1.20494
+
+Heuristic F:
+MIN = 1
+MAX = 2.15729
+AVE = 1.52041
+
+For N = 20:
+
+Heuristic A:
+MIN = 1.01381
+MAX = 1.27845
+AVE = 1.14598
+
+Heuristic B:
+MIN = 1.47161
+MAX = 2.12363
+AVE = 1.80641
+
+Heuristic C:
+MIN = 1.68431
+MAX = 2.5682
+AVE = 2.15445
+
+Heuristic D:
+MIN = 1.05257
+MAX = 1.62663
+AVE = 1.28808
+
+Heuristic E:
+MIN = 1.10371
+MAX = 1.41307
+AVE = 1.24625
+
+Heuristic F:
+MIN = 1.01176
+MAX = 2.40126
+AVE = 1.52896
+
+For N = 25:
+
+Heuristic A:
+MIN = 1.03957
+MAX = 1.32933
+AVE = 1.15862
+
+Heuristic B:
+MIN = 1.52352
+MAX = 2.47882
+AVE = 1.84419
+
+Heuristic C:
+MIN = 1.84282
+MAX = 2.52265
+AVE = 2.22763
+
+Heuristic D:
+MIN = 1.14496
+MAX = 1.68827
+AVE = 1.29234
+
+Heuristic E:
+MIN = 1.13249
+MAX = 1.40545
+AVE = 1.28261
+
+Heuristic F:
+MIN = 1.01973
+MAX = 2.32298
+AVE = 1.62347
+

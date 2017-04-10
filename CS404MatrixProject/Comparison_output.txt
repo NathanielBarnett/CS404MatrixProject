@@ -1,0 +1,164 @@
+*USING Josh's Optimal function*
+File Read In: CS404SP17MatrixChainHeuristicsInput1.txt
+HA: 3.19873
+HB: 5.75179
+HC: 4.67354
+HD: 3.22203
+HE: 3.69091
+HF: 3.17103
+Optimal Cost: 66936
+
+File Read In: CS404SP17MatrixChainHeuristicsInput2.txt
+HA: 5.14215
+HB: 9.27323
+HC: 6.96018
+HD: 4.81997
+HE: 6.24945
+HF: 4.73718
+Optimal Cost: 41892
+
+File Read In: CS404SP17MatrixChainHeuristicsInput3.txt
+HA: 10.6476
+HB: 18.3672
+HC: 15.5326
+HD: 9.45118
+HE: 14.594
+HF: 9.45118
+Optimal Cost: 22820
+
+File Read In: CS404SP17MatrixChainHeuristicsInput4.txt
+HA: 2.98488
+HB: 8.38067
+HC: 10.2979
+HD: 4.6296
+HE: 6.95332
+HF: 4.65424
+Optimal Cost: 34660
+
+File Read In: CS404SP17MatrixChainHeuristicsInput5.txt
+HA: 3.14717
+HB: 4.92637
+HC: 5.82464
+HD: 3.29071
+HE: 4.6823
+HF: 3.13208
+Optimal Cost: 62688
+
+File Read In: CS404SP17MatrixChainHeuristicsInput6.txt
+HA: 4.43212
+HB: 9.9956
+HC: 11.7012
+HD: 5.32543
+HE: 10.0337
+HF: 6.20913
+Optimal Cost: 32019
+
+File Read In: CS404SP17MatrixChainHeuristicsInput7.txt
+HA: 2.53108
+HB: 4.9434
+HC: 6.04212
+HD: 3.27534
+HE: 3.79487
+HF: 3.14922
+Optimal Cost: 47526
+
+File Read In: input.txt
+HA: 1.2145
+HB: 4.82175
+HC: 5.11178
+HD: 2.0423
+HE: 4.40483
+HF: 2.0423
+Optimal Cost: 1655
+
+File Read In: input2.txt
+HA: 1.61538
+HB: 2
+HC: 2.61538
+HD: 1.61538
+HE: 2
+HF: 1.61538
+Optimal Cost: 52
+
+*Using My OP FUNCTION*
+File Read In: CS404SP17MatrixChainHeuristicsInput1.txt
+HA: 2.90784
+HB: 5.22873
+HC: 4.24853
+HD: 2.92903
+HE: 3.35527
+HF: 2.88266
+Optimal Cost: 73632
+
+File Read In: CS404SP17MatrixChainHeuristicsInput2.txt
+HA: 4.63577
+HB: 8.36003
+HC: 6.27477
+HD: 4.34531
+HE: 5.63403
+HF: 4.27068
+Optimal Cost: 46468
+
+File Read In: CS404SP17MatrixChainHeuristicsInput3.txt
+HA: 9.63128
+HB: 16.6141
+HC: 14.05
+HD: 8.54907
+HE: 13.201
+HF: 8.54907
+Optimal Cost: 25228
+
+File Read In: CS404SP17MatrixChainHeuristicsInput4.txt
+HA: 2.71795
+HB: 7.6312
+HC: 9.37694
+HD: 4.21558
+HE: 6.33149
+HF: 4.23802
+Optimal Cost: 38064
+
+File Read In: CS404SP17MatrixChainHeuristicsInput5.txt
+HA: 2.87981
+HB: 4.50785
+HC: 5.32982
+HD: 3.01115
+HE: 4.28452
+HF: 2.866
+Optimal Cost: 68508
+
+File Read In: CS404SP17MatrixChainHeuristicsInput6.txt
+HA: 4.06951
+HB: 9.17782
+HC: 10.7439
+HD: 4.88974
+HE: 9.21278
+HF: 5.70114
+Optimal Cost: 34872
+
+File Read In: CS404SP17MatrixChainHeuristicsInput7.txt
+HA: 2.25494
+HB: 4.40408
+HC: 5.38293
+HD: 2.91801
+HE: 3.38085
+HF: 2.80565
+Optimal Cost: 53346
+
+File Read In: input.txt
+HA: 1
+HB: 3.97015
+HC: 4.20896
+HD: 1.68159
+HE: 3.62687
+HF: 1.68159
+Optimal Cost: 2010
+
+File Read In: input2.txt
+HA: 1
+HB: 1.2381
+HC: 1.61905
+HD: 1
+HE: 1.2381
+HF: 1
+Optimal Cost: 84
+
