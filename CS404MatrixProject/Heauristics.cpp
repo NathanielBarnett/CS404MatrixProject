@@ -9,16 +9,6 @@ Current File: Heauristics.cpp -> The implementation of the various heuristics.
 
 #include "Heuristics.h"
 
-// Wrapper function for OMCmatrix()
-long int Optimal_Cost(int arr[], int N) {
-	long int Table[900];
-	for (int i = 0; i < 900; i++)
-	{
-		Table[i] = -1;
-	}
-	return OMCmatrix(arr, N, Table);
-}
-
 
 
 // REFERENCE URL's: http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/chainMatrixMult.htm	For comprehension of the algorithm
@@ -27,17 +17,18 @@ long int Optimal_Cost(int arr[], int N) {
 pre: pass in an array, the size n of the array, and an array to store the computed cost of different parenthizations.
 post: returns the optimal minimal cost for multiplying the matrix chain.
 */
-long int OMCmatrix(int d_arr[], int n, long int cost_arr[]) {
+int OMCmatrix(vector<int> vec_arr) {
 
 	int i, j, k, L, q;
-
+	int n = vec_arr.size();
+	int cost_arr[30][30] = { 0 };
 	/* m[i,j] = Minimum number of scalar multiplications needed
 	to compute the matrix A[i]A[i+1]...A[j] = A[i..j] where
 	dimension of A[i] is p[i-1] x p[i] */
 
 	// cost is zero when multiplying one matrix.
 	for (i = 1; i<n; i++)
-		cost_arr[i * i] = 0;
+		cost_arr[i][i] = 0;
 
 	// L is chain length.
 	for (L = 2; L<n; L++)
@@ -45,18 +36,18 @@ long int OMCmatrix(int d_arr[], int n, long int cost_arr[]) {
 		for (i = 1; i<n - L + 1; i++)
 		{
 			j = i + L - 1;
-			cost_arr[i * j] = INT_MAX;
+			cost_arr[i][j] = INT_MAX;
 			for (k = i; k <= j - 1; k++)
 			{
 				// q = cost/scalar multiplications
-				q = cost_arr[i * k] + cost_arr[(k + 1) * j] + d_arr[i - 1] * d_arr[k] * d_arr[j];
-				if (q < cost_arr[i * j])
-					cost_arr[i * j] = q;
+				q = cost_arr[i][k] + cost_arr[(k + 1)][j] + vec_arr[i - 1] * vec_arr[k] * vec_arr[j];
+				if (q < cost_arr[i][j])
+					cost_arr[i][j] = q;
 			}
 		}
 	}
 
-	return cost_arr[1 * (n - 1)];
+	return cost_arr[1] [(n - 1)];
 }
 
 
@@ -277,37 +268,37 @@ void Compute_Heuristics(H_stats& HA, H_stats& HB, H_stats& HC,
 	H_stats& HD, H_stats& HE, H_stats& HF) {
 	for (int i = 0; i < 30; i++) {
 		// A
-		if (HA.arr_of_costs[i] < HA.min)
+		if (HA.arr_of_costs[i] < HA.min )	
 			HA.min = HA.arr_of_costs[i];
 		if (HA.arr_of_costs[i] > HA.max)
 			HA.max = HA.arr_of_costs[i];
 		HA.ave += HA.arr_of_costs[i];
 		// B
-		if (HB.arr_of_costs[i] < HB.min)
+		if (HB.arr_of_costs[i] < HB.min )
 			HB.min = HB.arr_of_costs[i];
 		if (HB.arr_of_costs[i] > HB.max)
 			HB.max = HB.arr_of_costs[i];
 		HB.ave += HB.arr_of_costs[i];
 		// C
-		if (HC.arr_of_costs[i] < HC.min)
+		if (HC.arr_of_costs[i] < HC.min )
 			HC.min = HC.arr_of_costs[i];
 		if (HC.arr_of_costs[i] > HC.max)
 			HC.max = HC.arr_of_costs[i];
 		HC.ave += HC.arr_of_costs[i];
 		// D
-		if (HD.arr_of_costs[i] < HD.min)
+		if (HD.arr_of_costs[i] < HD.min )
 			HD.min = HD.arr_of_costs[i];
 		if (HD.arr_of_costs[i] > HD.max)
 			HD.max = HD.arr_of_costs[i];
 		HD.ave += HD.arr_of_costs[i];
 		// E
-		if (HE.arr_of_costs[i] < HE.min)
+		if (HE.arr_of_costs[i] < HE.min )
 			HE.min = HE.arr_of_costs[i];
 		if (HE.arr_of_costs[i] > HE.max)
 			HE.max = HE.arr_of_costs[i];
 		HE.ave += HE.arr_of_costs[i];
 		// F
-		if (HF.arr_of_costs[i] < HF.min)
+		if (HF.arr_of_costs[i] < HF.min )
 			HF.min = HF.arr_of_costs[i];
 		if (HF.arr_of_costs[i] > HF.max)
 			HF.max = HF.arr_of_costs[i];
@@ -333,29 +324,31 @@ void Print_Heuristics(int N, H_stats& HA, H_stats& HB, H_stats& HC,
 	if (!out.good())
 	{
 		cout << "~OUTPUT FILE COULD NOT BE OPENED~" << endl;
+		system("pause");
 	}
 
+	out << "For N = " << N << ":" << endl;
 	// A
-	out << "For N = " << N << ":" << endl << "Heuristic A:" << "MIN = " << HA.min;
-	out << " MAX = " << HA.max << " AVE = " << HA.ave << endl;
+	out << endl << "Heuristic A:" << endl << "MIN = " << HA.min;
+	out << endl <<  "MAX = " << HA.max << endl << "AVE = " << HA.ave << endl;
 	
 	// B
-	out << "For N = " << N << ":" << endl << "Heuristic B:" << "MIN = " << HB.min;
-	out << " MAX = " << HB.max << " AVE = " << HB.ave << endl;
+	out << endl << "Heuristic B:"  << endl << "MIN = " << HB.min << endl;
+	out << "MAX = " << HB.max << endl << "AVE = " << HB.ave << endl;
 
 	// C
-	out << "For N = " << N << ":" << endl << "Heuristic C:" << "MIN = " << HC.min;
-	out << " MAX = " << HC.max << " AVE = " << HC.ave << endl;
+	out << endl << "Heuristic C:" << endl << "MIN = " << HC.min << endl;
+	out << "MAX = " << HC.max <<endl << "AVE = " << HC.ave << endl;
 
 	// D
-	out << "For N = " << N << ":" << endl << "Heuristic D:" << "MIN = " << HD.min;
-	out << " MAX = " << HD.max << " AVE = " << HD.ave << endl;
+	out << endl << "Heuristic D:" << endl << "MIN = " << HD.min << endl;
+	out << "MAX = " << HD.max << endl << "AVE = " << HD.ave << endl;
 
 	// E
-	out << "For N = " << N << ":" << endl << "Heuristic E:" << "MIN = " << HE.min;
-	out << " MAX = " << HE.max << " AVE = " << HE.ave << endl;
+	out << endl << "Heuristic E:" << endl << "MIN = " << HE.min << endl;
+	out << "MAX = " << HE.max << endl << "AVE = " << HE.ave << endl;
 
 	// F
-	out << "For N = " << N << ":" << endl << "Heuristic F:" << "MIN = " << HF.min;
-	out << " MAX = " << HF.max << " AVE = " << HF.ave << endl << endl;
+	out << endl << "Heuristic F:" << endl  << "MIN = " << HF.min << endl;
+	out << "MAX = " << HF.max << endl << "AVE = " << HF.ave << endl << endl;
 }

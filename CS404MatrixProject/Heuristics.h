@@ -11,7 +11,7 @@ Current File: Heuristics.h -> The header file for the functions that carry out t
 #include <vector>
 #include <random>
 #include <time.h>
-#include <iomanip>
+#include <string>
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -22,10 +22,8 @@ using namespace std;
 pre: pass in an array
 post: returns the optimal minimal cost for multiplying the matrix chain
 */
-long int OMCmatrix(int d_arr[], int n, long int cost_arr[]);
+int OMCmatrix(vector<int> vec_arr);
 
-// Wrapper function for OMCmatrix()
-long int Optimal_Cost(int arr[], int N);
 
 /* Heuristic A:
 -> Remove largest dimension first to find the largest value of the "inner" dimensions, {d0, d1,..., d(n-1)},
@@ -92,7 +90,7 @@ long int Heuristic_F(vector<int> arr);
 
 struct H_stats {
 	double arr_of_costs[30];
-	double min = 10.0;
+	double min = 9999.999;	// Massively large min to begin
 	double max = -1;
 	double ave = 0;
 };

@@ -13,27 +13,38 @@ Current File: Source.cpp -> Source file for Heuristic program
 #include "Heuristics.h"
 
 using namespace std;
-
+void Heuristic_Experiment(string file);
 void Heuristic_Experiment();
 
 int main()
 {
+	
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput1.txt");
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput2.txt");
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput3.txt");
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput4.txt");
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput5.txt");
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput6.txt");
+	Heuristic_Experiment("CS404SP17MatrixChainHeuristicsInput7.txt");
+	Heuristic_Experiment("input.txt");
+	Heuristic_Experiment("input2.txt");
+	system("pause");
+
 	//Matrix Chain Heuristic Experiment
-	Heuristic_Experiment();
+	//Heuristic_Experiment();
 }
 
 
 //Matrix Chain Heuristic Experiment
 void Heuristic_Experiment() {
 	// Struct to hold values for each heuristic.
-	srand(time(NULL));
+	srand(time(NULL));	// Setting the seed for the random generator
 	int LowValue = 7, HighValue = 17, dim = 1;
 	
 	for (int N = 10; N < 30; N += 5)
 	{
-		long int Op_cost = 0;
+		int Op_cost = 0;
 		vector<int> vec_arr;
-		int arr[30];
 		H_stats Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F;	
 		for (int r = 0; r < 30; r++)
 		{
@@ -43,74 +54,57 @@ void Heuristic_Experiment() {
 			{
 				
 				dim = (rand() % 10) + 7;
-				arr[i] = dim;
 				vec_arr.push_back(dim);
 			}
-			Op_cost = Optimal_Cost(arr, N);
-			Heur_A.arr_of_costs[r] = (double)Heuristic_A(vec_arr) / Op_cost;
-			Heur_B.arr_of_costs[r] = (double)Heuristic_B(vec_arr) / Op_cost;
-			Heur_C.arr_of_costs[r] = (double)Heuristic_C(vec_arr) / Op_cost;
-			Heur_D.arr_of_costs[r] = (double)Heuristic_D(vec_arr) / Op_cost;
-			Heur_E_L.arr_of_costs[r] = (double)Heuristic_E_L(vec_arr) / Op_cost;
-			Heur_F.arr_of_costs[r] = (double)Heuristic_F(vec_arr) / Op_cost;
+			Op_cost = OMCmatrix(vec_arr);
+			Heur_A.arr_of_costs[r] = (double)Heuristic_A(vec_arr) / (double)Op_cost;
+			Heur_B.arr_of_costs[r] = (double)Heuristic_B(vec_arr) / (double)Op_cost;
+			Heur_C.arr_of_costs[r] = (double)Heuristic_C(vec_arr) / (double)Op_cost;
+			Heur_D.arr_of_costs[r] = (double)Heuristic_D(vec_arr) / (double)Op_cost;
+			Heur_E_L.arr_of_costs[r] = (double)Heuristic_E_L(vec_arr) / (double)Op_cost;
+			Heur_F.arr_of_costs[r] = (double)Heuristic_F(vec_arr) / (double)Op_cost;
 		}
 		Compute_Heuristics(Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
 		Print_Heuristics(N, Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
 		cout << "Completed run for N = " << N << endl;
 	}
 	cout << endl << "~END EXPERIMENT~" << endl;
-	system("pause");
+	//system("pause");
 }
 
 
 
-// Previously the contents of main()
-/*
-for (int m = 0; m < 7; m++)
-{
-cout << (rand() % 6) + 1 << " ";
+void Heuristic_Experiment(string file) {
+	
+	ifstream fin(file);
+	if (fin.fail())
+	{
+		cout << "file failed to open." << endl;
+	}
+	cout << "File: " << file << endl;
+
+	int current_val; char comma;
+	int arr[30], counter = 0;
+	vector<int> vec_arr;
+	while (fin.good()) {
+		fin >> current_val >> comma;
+		vec_arr.push_back(current_val);
+		arr[counter] = current_val;
+	}
+	int N = vec_arr.size();
+	double Op_cost = OMCmatrix(vec_arr);
+	double HA, HB, HC, HD, HE, HF;
+	HA = Heuristic_A(vec_arr) / Op_cost;
+	HB = Heuristic_B(vec_arr) / Op_cost;
+	HC = Heuristic_C(vec_arr) / Op_cost;
+	HD = Heuristic_D(vec_arr) / Op_cost;
+	HE = Heuristic_E(vec_arr) / Op_cost;
+	HF = Heuristic_F(vec_arr) / Op_cost;
+
+	fin.close();
+
+	cout << "HA: " << HA << endl << "HB: " << HB << endl << "HC: "
+		<< HC << endl << "HD: " << HD << endl << "HE: " << HE << endl <<
+		"HF: " << HF << endl << "Optimal: " << Op_cost << endl << endl;
+
 }
-
-system("pause");
-
-int  arr[] = { 5, 10, 3, 12, 5, 50, 6 };
-long int table[900];
-int i = 1, j = 0;
-
-vector<int> vec_arr;
-
-
-while (j < 900)
-{
-	table[j] = -1;
-	j++;
-}
-//so, im trying this out....
-i = 1;
-j = 30;
-long int opt_val, HA_val, HB_val, HC_val, HD_val, HE_val, HF_val;
-//minval = optimalchain(arr, 10);
-int size = sizeof(arr) / sizeof(arr[0]);
-
-for (int l = 0; l < size; l++)
-	vec_arr.push_back(arr[l]);
-
-// Test different heuristic algorithms
-opt_val = OMCmatrix(arr, size, table);
-HA_val = Heuristic_A(vec_arr);
-HB_val = Heuristic_B(vec_arr);
-HC_val = Heuristic_C(vec_arr);
-HD_val = Heuristic_D(vec_arr);
-HE_val = Heuristic_E(vec_arr);
-HF_val = Heuristic_F(vec_arr);
-
-cout << "Optimal Cost: " << opt_val << endl;
-cout << "Heuristic A: " << HA_val << endl;
-cout << "Heuristic B: " << HB_val << endl;
-cout << "Heuristic C: " << HC_val << endl;
-cout << "Heuristic D: " << HD_val << endl;
-cout << "Heuristic E: " << HE_val << endl;
-cout << "Heuristic F: " << HF_val << endl;
-
-system("pause");
-*/

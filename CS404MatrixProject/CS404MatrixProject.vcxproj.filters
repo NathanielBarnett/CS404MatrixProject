@@ -27,4 +27,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput3.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput4.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput5.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput6.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CS404SP17MatrixChainHeuristicsInput7.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="input2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
