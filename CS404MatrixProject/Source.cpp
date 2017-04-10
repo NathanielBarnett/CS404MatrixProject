@@ -26,17 +26,18 @@ int main()
 //Matrix Chain Heuristic Experiment
 void Heuristic_Experiment() {
 	// Struct to hold values for each heuristic.
-
-	H_stats Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F;
-	long int Op_cost = 0;
+	srand(time(NULL));
 	int LowValue = 7, HighValue = 17, dim = 1;
-	vector<int> vec_arr;
-	int arr[30];
+	
 	for (int N = 10; N < 30; N += 5)
 	{
+		long int Op_cost = 0;
+		vector<int> vec_arr;
+		int arr[30];
+		H_stats Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F;	
 		for (int r = 0; r < 30; r++)
 		{
-			srand(time(NULL));
+			//srand(time(NULL));
 			vec_arr.clear();
 			for (int i = 0; i < N; i++)
 			{
@@ -46,12 +47,12 @@ void Heuristic_Experiment() {
 				vec_arr.push_back(dim);
 			}
 			Op_cost = Optimal_Cost(arr, N);
-			Heur_A.arr_of_costs[r] = double(Heuristic_A(vec_arr)) / double(Op_cost);
-			Heur_B.arr_of_costs[r] = double(Heuristic_B(vec_arr)) / double(Op_cost);
-			Heur_C.arr_of_costs[r] = double(Heuristic_C(vec_arr)) / double(Op_cost);
-			Heur_D.arr_of_costs[r] = double(Heuristic_D(vec_arr)) / double(Op_cost);
-			Heur_E_L.arr_of_costs[r] = double(Heuristic_E_L(vec_arr)) / double(Op_cost);
-			Heur_F.arr_of_costs[r] = double(Heuristic_F(vec_arr)) / double(Op_cost);
+			Heur_A.arr_of_costs[r] = (double)Heuristic_A(vec_arr) / Op_cost;
+			Heur_B.arr_of_costs[r] = (double)Heuristic_B(vec_arr) / Op_cost;
+			Heur_C.arr_of_costs[r] = (double)Heuristic_C(vec_arr) / Op_cost;
+			Heur_D.arr_of_costs[r] = (double)Heuristic_D(vec_arr) / Op_cost;
+			Heur_E_L.arr_of_costs[r] = (double)Heuristic_E_L(vec_arr) / Op_cost;
+			Heur_F.arr_of_costs[r] = (double)Heuristic_F(vec_arr) / Op_cost;
 		}
 		Compute_Heuristics(Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);
 		Print_Heuristics(N, Heur_A, Heur_B, Heur_C, Heur_D, Heur_E_L, Heur_F);

@@ -210,7 +210,7 @@ long int Heuristic_E(vector<int> arr) {
 	
 	
 	while (arr.size() > 2) {
-		srand(time(NULL));	// Set seed for random number generator.
+		//srand(time(NULL));	// Set seed for random number generator.
 
 		// get random number, mod by (n - 1), then increment by 1 to result with possible values between {1,..., (n - 1)}
 		idx_d = (rand() % (arr.size() - 2) + 1);
@@ -314,12 +314,12 @@ void Compute_Heuristics(H_stats& HA, H_stats& HB, H_stats& HC,
 		HF.ave += HF.arr_of_costs[i];
 	}
 	// now divide by 30 to get the actual average value for each heuristic.
-	HA.ave = HA.ave / 30.0;
-	HB.ave = HB.ave / 30.0;
-	HC.ave = HC.ave / 30.0;
-	HD.ave = HD.ave / 30.0;
-	HE.ave = HE.ave / 30.0;
-	HF.ave = HF.ave / 30.0;
+	HA.ave = HA.ave / 30;
+	HB.ave = HB.ave / 30;
+	HC.ave = HC.ave / 30;
+	HD.ave = HD.ave / 30;
+	HE.ave = HE.ave / 30;
+	HF.ave = HF.ave / 30;
 
 }
 
